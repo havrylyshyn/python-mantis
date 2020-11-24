@@ -14,6 +14,7 @@ class ProjectHelper:
 
     def create(self, project):
         wd = self.app.wd
+        self.open_projects_page()
         wd.find_element_by_xpath("//input[@value = 'Create New Project']").click()
         wd.find_element_by_name("name").click()
         wd.find_element_by_name("name").clear()
@@ -37,6 +38,7 @@ class ProjectHelper:
 
     def delete_project_by_id(self, id):
         wd = self.app.wd
+        self.open_projects_page()
         self.open_project_by_id(id)
         wd.find_element_by_xpath("//input[@value = 'Delete Project']").click()
         wd.find_element_by_xpath("//input[@value = 'Delete Project']").click()

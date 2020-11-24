@@ -26,11 +26,10 @@ def config(request):
 @pytest.fixture
 def app(request, config):
     global fixture
-    web_config = config['web']
     user = config['webadmin']
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=web_config['baseUrl'])
+        fixture = Application(browser=browser, config=config)
     fixture.session.ensure_login(username=user['username'], password=user['password'])
     return fixture
 
@@ -38,10 +37,9 @@ def app(request, config):
 @pytest.fixture
 def app_auth(request, config):
     global fixture
-    web_config = config['web']
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=web_config['baseUrl'])
+        fixture = Application(browser=browser, config=config)
     return fixture
 
 
