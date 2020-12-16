@@ -28,7 +28,7 @@ class ProjectHelper:
         self.open_projects_page()
         for element in wd.find_elements_by_xpath("//a[contains(@href,'manage_proj_edit_page.php?project_id')]"):
             name = element.text
-            id = [int(s) for s in re.findall(r'\b\d+\b', element.get_attribute('href'))][-1]
+            id = [int(s) for s in re.findall(r'\d+', element.get_attribute('href'))][-1]
             projects_list.append(Project(name=name, id=id))
         return projects_list
 
